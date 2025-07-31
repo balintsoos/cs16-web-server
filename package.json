@@ -1,0 +1,21 @@
+{
+  "name": "cs-web-server",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3",
+    "vite": "^7.0.6",
+    "cs16-client": "latest",
+    "jszip": "^3.10.1",
+    "xash3d-fwgs": "latest"
+  }
+}
