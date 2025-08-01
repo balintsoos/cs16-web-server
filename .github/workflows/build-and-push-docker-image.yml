@@ -4,6 +4,9 @@ name: Build and Push Docker Image
 on:
   workflow_dispatch:
 
+env:
+  IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/cs16-web-server
+
 jobs:
   build-and-push:
     name: Build and Push
@@ -32,4 +35,6 @@ jobs:
           context: .
           push: true
           platforms: linux/386
-          tags: ghcr.io/${{ github.repository_owner }}/cs16-web-server:latest
+          tags: |
+            ${{ env.IMAGE_NAME }}:latest
+            ${{ env.IMAGE_NAME }}:${{ github.sha }}
