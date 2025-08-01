@@ -1,5 +1,8 @@
-rebuild:
-	docker compose up --build --no-deps --force-recreate -d
+run:
+	docker compose up -d
 
-build-local:
-	docker compose -f docker-compose.local.yml up -d
+build-local-image:
+	docker build --platform=linux/386 -t local/cs16-web-server .
+
+rebuild-local-image:
+	docker build --no-cache --platform=linux/386 -t local/cs16-web-server .

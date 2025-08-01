@@ -1,6 +1,6 @@
 services:
-  xash3d:
-    image: yohimik/cs-web-server:0.0.0-i386
+  cs16-web-server:
+    build: .
     command: ["+map de_dust2", "+maxplayers 10"]
     restart: always
     platform: linux/386
