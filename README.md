@@ -2,8 +2,6 @@
 
 This repository provides a **plug-and-play Docker image** for running a fully functional **Counter-Strike 1.6** client and dedicated server via the web. Powered by **Xash3D FWGS**, **WebRTC**, and modern web tooling, this setup allows for in-browser gameplay and remote multiplayer support.
 
----
-
 ## 🧱 Features
 
 - ✅ Web-based CS 1.6 client (HTML + TypeScript + Vite)
@@ -13,7 +11,11 @@ This repository provides a **plug-and-play Docker image** for running a fully fu
 - ✅ Dockerized & easy to deploy
 - ✅ i386 (32-bit) architecture support
 
----
+
+## 🙏 Acknowledgements
+
+Special thanks to [yohimik](https://github.com/yohimik) for his outstanding work on [Xash3D-FWGS Emscripten Web Port](https://github.com/yohimik/webxash3d-fwgs) and related projects, which made this possible!
+
 
 ## 📁 Repository Structure
 
@@ -51,13 +53,13 @@ To run the game, you must provide original **Counter-Strike 1.6 game files** fro
 
 ### 📦 `valve.zip` Structure
 
+The `valve.zip` file must contain the following two directories from your Steam installation:
+
 ```plaintext
 valve.zip
 ├── valve/
 └── cstrike/
 ```
-
-The `valve.zip` file must contain the following two directories from your Steam installation:
 
 ### ✅ Prerequisites
 
@@ -68,15 +70,15 @@ The `valve.zip` file must contain the following two directories from your Steam 
 You must mount the file to the container path `/xashds/public/valve.zip`:
 
 ```shell
-docker build -t cs-web-server .
+docker build --platform=linux/386 -t cs16-web-server .
 docker run -d \
   -p 27016:27016 \
   -p <your-port>:<your-port>/udp \
   -e IP=<your-public-ip> \
   -e PORT=<your-port> \
   -v $(pwd)/valve.zip:/xashds/public/valve.zip \
-  cs-web-server \
-  +map de_dust +maxplayers 14
+  cs16-web-server \
+  +map de_dust2 +maxplayers 14
 ```
 
 Replace the placeholders:
@@ -107,4 +109,4 @@ To include custom plugins:
 ## 📜 License
 
 This project is licensed under the MIT License.
-See the [LICENSE](./LICENSE.md) file for more information.
+See the [LICENSE](./LICENSE) file for more information.
