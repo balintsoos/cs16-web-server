@@ -1,3 +1,9 @@
+FROM steamcmd/steamcmd AS gamefiles
+
+WORKDIR /gamefiles
+RUN steamcmd +force_install_dir /gamefiles +login anonymous +app_update 90 +quit \
+    && zip -r /gamefiles/valve.zip valve cstrike
+
 FROM debian:bookworm-slim AS engine
 
 RUN dpkg --add-architecture i386
@@ -112,6 +118,7 @@ COPY --from=client /client/src/client/dist ./public
 COPY --from=engine /xash/build/filesystem/filesystem_stdio.so ./filesystem_stdio.so
 COPY --from=engine "/usr/lib/i386-linux-gnu/libstdc++.so.6" "./libstdc++.so.6"
 COPY --from=engine "/usr/lib/i386-linux-gnu/libgcc_s.so.1" "./libgcc_s.so.1"
+COPY --from=gamefiles /gamefiles/valve.zip ./public/valve.zip
 EXPOSE 27015/udp
 
 # Start server
