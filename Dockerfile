@@ -1,8 +1,12 @@
-FROM --platform=linux/amd64 steamcmd/steamcmd AS gamefiles
+FROM cm2network/steamcmd:root AS gamefiles
 
-WORKDIR /gamefiles
-RUN steamcmd +force_install_dir /gamefiles +login anonymous +app_update 90 +quit \
-    && zip -r /gamefiles/valve.zip valve cstrike
+RUN apt update && apt -y --no-install-recommends install zip
+
+USER steam
+RUN ./steamcmd.sh +force_install_dir /home/steam/gamefiles +login anonymous +app_update 90 +quit
+
+WORKDIR /home/steam/gamefiles
+RUN zip -r valve.zip valve cstrike
 
 FROM debian:bookworm-slim AS engine
 
@@ -41,7 +45,6 @@ ENV CC="gcc -m32 -D__i386__"
 ENV CGO_CFLAGS="-fopenmp -m32"
 ENV CGO_LDFLAGS="-fopenmp -m32"
 RUN go build -o ./xash ./src/server
-
 
 FROM debian:bookworm-slim AS hlds
 
@@ -93,7 +96,6 @@ COPY src/client src/client
 
 RUN npm run build
 
-
 FROM debian:bookworm-slim AS final
 
 ENV XASH3D_BASEDIR=/xashds
@@ -118,7 +120,7 @@ COPY --from=client /client/src/client/dist ./public
 COPY --from=engine /xash/build/filesystem/filesystem_stdio.so ./filesystem_stdio.so
 COPY --from=engine "/usr/lib/i386-linux-gnu/libstdc++.so.6" "./libstdc++.so.6"
 COPY --from=engine "/usr/lib/i386-linux-gnu/libgcc_s.so.1" "./libgcc_s.so.1"
-COPY --from=gamefiles /gamefiles/valve.zip ./public/valve.zip
+COPY --from=gamefiles /home/steam/gamefiles/valve.zip ./public/valve.zip
 EXPOSE 27015/udp
 
 # Start server
