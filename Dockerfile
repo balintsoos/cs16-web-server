@@ -1,4 +1,4 @@
-FROM steamcmd/steamcmd AS gamefiles
+FROM --platform=linux/amd64 steamcmd/steamcmd AS gamefiles
 
 WORKDIR /gamefiles
 RUN +force_install_dir /gamefiles +login anonymous +app_update 90 +quit \
