@@ -13,7 +13,7 @@ This repository provides a **plug-and-play Docker image** for running a fully fu
 
 ## 🙏 Acknowledgements
 
-Special thanks to [yohimik](https://github.com/yohimik) for his outstanding work on [Xash3D-FWGS Emscripten Web Port](https://github.com/yohimik/webxash3d-fwgs) and related projects, which made this possible!
+Special thanks to [yohimik](https://github.com/yohimik) for his outstanding work on the [Xash3D-FWGS Emscripten Web Port](https://github.com/yohimik/webxash3d-fwgs) and the [Xash3D-FWGS CGO Wrapper](https://github.com/yohimik/goxash3d-fwgs), which made this possible!
 
 ## 🚀 Getting Started
 
