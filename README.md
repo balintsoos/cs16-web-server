@@ -25,9 +25,9 @@ There are multiple ways to aquire the game files, but one of the easiest is to u
 
 ```shell
 docker run --rm -it \
-  -v $(pwd)/gamefiles:/gamefiles \
-  cm2network/steamcmd \
-  ./steamcmd.sh +force_install_dir /gamefiles +login anonymous +app_update 90 +quit
+  -v $PWD/gamefiles:/gamefiles \
+  steamcmd/steamcmd:latest \
+  +force_install_dir /gamefiles +login anonymous +app_update 90 +quit
 ```
 
 After the download finished, you need to package the files into a `valve.zip` file, that must contain the following two directories:
