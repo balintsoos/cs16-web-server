@@ -1,12 +1,14 @@
+---
 services:
   cs16-web-server:
     build: .
-    command: ["+map de_dust2", "+maxplayers 10"]
+    container_name: cs16-web-server
+    command: ["+map de_dust2", "+maxplayers 14"]
     restart: always
     platform: linux/386
     environment:
-      PORT: 27018
       IP: 127.0.0.1
+      PORT: 27018
     volumes:
       - "./valve.zip:/xashds/public/valve.zip"
     ports:
