@@ -67,15 +67,3 @@ form {
   justify-content: space-between;
   color: white;
 }
-
-#warning {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 3;
-  text-align: center;
-  color: red;
-  opacity: 0;
-  transition: opacity ease-in-out 0.5s;
-}

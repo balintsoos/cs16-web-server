@@ -1,4 +1,4 @@
-import { Net, Packet, Xash3D, Xash3DOptions } from 'xash3d-fwgs';
+import { Net, type Packet, Xash3D, type Xash3DOptions } from 'xash3d-fwgs';
 
 export class Xash3DWebRTC extends Xash3D {
   private channel?: RTCDataChannel;
@@ -18,7 +18,7 @@ export class Xash3DWebRTC extends Xash3D {
     await Promise.all([super.init(), this.connect()]);
   }
 
-  initConnection(stream?: MediaStream) {
+  initConnection() {
     if (this.peer) return;
 
     this.peer = new RTCPeerConnection();
@@ -45,9 +45,6 @@ export class Xash3DWebRTC extends Xash3D {
         }
       };
     };
-    stream?.getTracks()?.forEach((t) => {
-      this.peer!.addTrack(t, stream);
-    });
     let channelsCount = 0;
     this.peer.ondatachannel = (e) => {
       if (e.channel.label === 'write') {
@@ -80,20 +77,11 @@ export class Xash3DWebRTC extends Xash3D {
               clearTimeout(this.timeout);
               this.timeout = undefined;
             }
-            document.getElementById('warning')!.style.opacity = '0';
             r();
           }
         }
       };
     };
-  }
-
-  private async getUserMedia() {
-    try {
-      return await navigator.mediaDevices.getUserMedia({ audio: true });
-    } catch (e) {
-      return undefined;
-    }
   }
 
   private wsSend(event: string, data: unknown) {
@@ -106,7 +94,6 @@ export class Xash3DWebRTC extends Xash3D {
   }
 
   async connect() {
-    const stream = await this.getUserMedia();
     return new Promise((resolve) => {
       this.resolve = resolve;
       const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
@@ -136,13 +123,7 @@ export class Xash3DWebRTC extends Xash3D {
         }
       };
       this.ws!.onopen = () => {
-        this.initConnection(stream);
-        if (!stream) {
-          this.timeout = setTimeout(() => {
-            this.timeout = undefined;
-            document.getElementById('warning')!.style.opacity = '1';
-          }, 10000);
-        }
+        this.initConnection();
       };
       this.ws.addEventListener('message', handler);
     });
