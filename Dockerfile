@@ -1,7 +1,7 @@
 FROM --platform=linux/amd64 steamcmd/steamcmd AS gamefiles
 
 WORKDIR /gamefiles
-RUN +force_install_dir /gamefiles +login anonymous +app_update 90 +quit \
+RUN steamcmd +force_install_dir /gamefiles +login anonymous +app_update 90 +quit \
     && zip -r /gamefiles/valve.zip valve cstrike
 
 FROM debian:bookworm-slim AS engine
