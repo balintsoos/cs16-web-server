@@ -1,109 +1,23 @@
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.png" type="image/png">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="module" src="/main.ts"></script>
-
-    <title>Loading</title>
-
-    <style>
-        body {
-            background-color: black;
-            margin: 0;
-        }
-
-        .notDraggable {
-            user-select: none;
-            -webkit-user-drag: none;
-            pointer-events: none;
-        }
-
-        @keyframes pulsate {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(0.5);
-                opacity: 0.75;
-            }
-        }
-
-        @keyframes pulsate-end {
-            0% {
-                transform: translate(-50%, -50%) scale(0.75);
-                opacity: 0.87;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0;
-            }
-        }
-
-        img {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 100vw;
-            max-height: 100vh;
-            animation-name: pulsate;
-            animation-duration: 0.75s;
-            animation-iteration-count: infinite;
-            animation-direction: alternate;
-            z-index: 2;
-            transition: opacity ease-in-out 0.5s;
-        }
-
-        canvas {
-            width: 100vw;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
-
-        form {
-            margin: 0;
-            padding: 16px;
-            position: fixed;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 2;
-            display: flex;
-            justify-content: space-between;
-            color: white;
-        }
-
-        #warning {
-            position: fixed;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 3;
-            text-align: center;
-            color: red;
-            opacity: 0;
-            transition: opacity ease-in-out 0.5s;
-        }
-    </style>
-</head>
-<body>
-<img id="logo" alt="Logo" class="notDraggable" src="logo.png"/>
-<canvas id="canvas">
-</canvas>
-<form id="form">
-    <label>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <title>Counter-Strike 1.6</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <img id="logo" alt="Logo" class="notDraggable" src="logo.png" />
+    <canvas id="canvas"> </canvas>
+    <form id="form">
+      <label>
         Player name
-        <input id="username" type="text" required/>
-    </label>
-    <button type="submit">
-        Start
-    </button>
-</form>
-<p id="warning" class="notDraggable">If it's not starting, try to enable microphone and refresh</p>
-</body>
+        <input id="username" type="text" required />
+      </label>
+      <button type="submit">Start</button>
+    </form>
+    <p id="warning" class="notDraggable">If it's not starting, try to enable microphone and refresh</p>
+    <script type="module" src="/main.ts"></script>
+  </body>
 </html>
