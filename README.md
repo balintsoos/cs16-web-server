@@ -13,40 +13,11 @@ This repository provides a **plug-and-play Docker image** for running a fully fu
 
 ## 🙏 Acknowledgements
 
-Special thanks to [yohimik](https://github.com/yohimik) for his outstanding work on the [Xash3D-FWGS Emscripten Web Port](https://github.com/yohimik/webxash3d-fwgs) and the [Xash3D-FWGS CGO Wrapper](https://github.com/yohimik/goxash3d-fwgs), which made this possible!
+Special thanks to **[yohimik](https://github.com/yohimik)** for his outstanding work on the [Xash3D-FWGS Emscripten Web Port](https://github.com/yohimik/webxash3d-fwgs) and the [Xash3D-FWGS CGO Wrapper](https://github.com/yohimik/goxash3d-fwgs), which made this possible!
 
 ## 🚀 Getting Started
 
-### 🎮 Game Files (Required)
-
-To run the game, you must provide the original **Counter-Strike 1.6 game files** from Steam. These must be packaged and mounted into the Docker container.
-
-There are multiple ways to aquire the game files, but one of the easiest is to use `steamcmd`.
-
-```shell
-docker run --rm -it \
-  -v $PWD/gamefiles:/gamefiles \
-  steamcmd/steamcmd:latest \
-  +force_install_dir /gamefiles +login anonymous +app_update 90 +quit
-```
-
-After the download finished, you need to package the files into a `valve.zip` file, that must contain the following two directories:
-
-```plaintext
-valve.zip
-├── valve/
-└── cstrike/
-```
-
-To create the `valve.zip` file, run the following command:
-
-```shell
-zip -r valve.zip gamefiles/valve gamefiles/cstrike
-```
-
-### 🐳 Run the container
-
-#### docker compose (recommended)
+### docker compose (recommended)
 
 ```yaml
 ---
@@ -60,15 +31,13 @@ services:
     environment:
       IP: 127.0.0.1
       PORT: 27018
-    volumes:
-      - "./valve.zip:/xashds/public/valve.zip"
     ports:
       - "27016:27016"
       - "27018:27018/tcp"
       - "27018:27018/udp"
 ```
 
-#### docker cli
+### docker cli
 
 ```shell
 docker run -d \
@@ -78,7 +47,6 @@ docker run -d \
   -p 27016:27016 \
   -p 27018:27018/tcp \
   -p 27018:27018/udp \
-  -v $(pwd)/valve.zip:/xashds/public/valve.zip \
   --platform linux/386
   --restart always \
   ghcr.io/balintsoos/cs16-web-server:latest \
