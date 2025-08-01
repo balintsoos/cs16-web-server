@@ -69,6 +69,7 @@ services:
 ```
 
 #### docker cli
+
 ```shell
 docker run -d \
   -name=cs16-web-server \
@@ -108,12 +109,27 @@ Custom plugins:
 
 ## 🛠️ Development
 
-You can build your own Docker image locally with:
+### Build Docker image:
 
 ```shell
 docker build --platform=linux/386 -t cs16-web-server .
 ```
 
+### Install client dependencies, build and serve client:
+
+```shell
+nvm install
+npm install
+npm run build
+npm run serve
+```
+
+### Install server dependencies:
+
+```shell
+goenv install
+go mod download
+```
 
 ## 📜 License
 
