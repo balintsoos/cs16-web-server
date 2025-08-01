@@ -38,10 +38,10 @@ valve.zip
 └── cstrike/
 ```
 
-To create the `valve.zip` file, run the following command in your `gamefiles` directory:
+To create the `valve.zip` file, run the following command:
 
 ```shell
-zip -r valve.zip valve cstrike
+zip -r valve.zip gamefiles/valve gamefiles/cstrike
 ```
 
 ### 🐳 Run the container
