@@ -1,19 +1,20 @@
 import { loadAsync } from 'jszip';
 
-const CACHE_KEY = 'gamefiles-cache';
-const CACHE_FILE_NAME = 'gamefiles.zip';
+const CACHE_VERSION = 'v1';
+const CACHE_KEY = `gamefiles-cache_${CACHE_VERSION}`;
+const CACHE_URL = 'gamefiles.zip';
 
 export async function getGameFiles() {
   const cache = await caches.open(CACHE_KEY);
-  const cacheHit = await cache.match(CACHE_FILE_NAME);
+  const cacheHit = await cache.match(CACHE_URL);
 
   if (cacheHit) {
     const buffer = await cacheHit.arrayBuffer();
     return loadAsync(buffer);
   }
 
-  const response = await fetch('/gamefiles.zip');
+  const response = await fetch(CACHE_URL);
+  await cache.put(CACHE_URL, response.clone());
   const buffer = await response.arrayBuffer();
-  await cache.put(CACHE_FILE_NAME, new Response(buffer));
   return loadAsync(buffer);
 }
