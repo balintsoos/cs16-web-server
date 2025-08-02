@@ -1,20 +1,15 @@
 import { loadAsync } from 'jszip';
+import { get, set } from 'idb-keyval';
 
-const CACHE_VERSION = 'v1';
-const CACHE_KEY = `gamefiles-cache_${CACHE_VERSION}`;
-const CACHE_URL = 'gamefiles.zip';
+const FILE_KEY = 'gamefiles.zip';
 
 export async function getGameFiles() {
-  const cache = await caches.open(CACHE_KEY);
-  const cacheHit = await cache.match(CACHE_URL);
-
+  const cacheHit = await get<ArrayBuffer>(FILE_KEY);
   if (cacheHit) {
-    const buffer = await cacheHit.arrayBuffer();
-    return loadAsync(buffer);
+    return loadAsync(cacheHit);
   }
-
-  const response = await fetch(CACHE_URL);
-  await cache.put(CACHE_URL, response.clone());
+  const response = await fetch(FILE_KEY);
   const buffer = await response.arrayBuffer();
+  await set(FILE_KEY, buffer);
   return loadAsync(buffer);
 }

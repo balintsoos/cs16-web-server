@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "cs16-client": "^0.0.2",
+    "idb-keyval": "^6.2.2",
     "jszip": "^3.10.1",
     "xash3d-fwgs": "^1.0.0"
   },
