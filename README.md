@@ -103,3 +103,5 @@ go mod download
 
 This project is licensed under the MIT License.
 See the [LICENSE](./LICENSE) file for more information.
+
+Counter-Strike and all related trademarks, logos, and intellectual property are the property of Valve Corporation. This project is not affiliated with or endorsed by Valve Corporation.
