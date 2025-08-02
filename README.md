@@ -1,4 +1,4 @@
-# Counter-Strike 1.6 Web Server
+# Counter-Strike 1.6 Web Server <img alt="Counter-Strike 1.6 icon" align="right" width="128" height="128" src="./src/client/public/apple-touch-icon.png" />
 
 This repository provides a **plug-and-play Docker image** for running a fully functional **Counter-Strike 1.6** client and dedicated server via the web. Powered by **Xash3D FWGS**, **WebRTC**, and modern web tooling, this setup allows for in-browser gameplay and remote multiplayer support.
 
