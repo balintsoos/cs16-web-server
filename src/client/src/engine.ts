@@ -5,8 +5,10 @@ import clientURL from 'cs16-client/cl_dll/client_emscripten_wasm32.wasm?url';
 import serverURL from 'cs16-client/dlls/cs_emscripten_wasm32.so?url';
 import gles3URL from 'xash3d-fwgs/libref_gles3compat.wasm?url';
 import { Xash3DWebRTC } from './webrtc';
+import { updateStatus } from './overlay';
 
-export function createEngine() {
+export function createEngine(): Xash3DWebRTC {
+  updateStatus('Initializing game engine...');
   return new Xash3DWebRTC({
     canvas: document.getElementById('canvas') as HTMLCanvasElement,
     module: {

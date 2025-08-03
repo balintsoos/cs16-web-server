@@ -3,23 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <title>Counter-Strike 1.6</title>
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
-    <img id="logo" alt="Logo" class="notDraggable" src="/apple-touch-icon.png" />
+    <div id="loading-overlay">
+      <img id="logo" alt="Logo" src="/apple-touch-icon.png" />
+      <div id="title">Counter-Strike 1.6</div>
+      <div id="progress-container">
+        <div id="progress-bar"></div>
+      </div>
+      <div id="loading-status">Loading...</div>
+      <label for="player-name-input">Your player name</label>
+      <input id="player-name-input" type="text" autofocus />
+      <button id="play-button" disabled>Play</button>
+    </div>
     <canvas id="canvas"></canvas>
-    <form id="form">
-      <label>
-        Player name
-        <input id="username" type="text" required />
-      </label>
-      <button type="submit">Start</button>
-    </form>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
