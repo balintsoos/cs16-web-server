@@ -47,13 +47,13 @@ docker run -d \
   -p 27016:27016 \
   -p 27018:27018/tcp \
   -p 27018:27018/udp \
-  --platform linux/386
+  --platform linux/386 \
   --restart always \
   ghcr.io/balintsoos/cs16-web-server:latest \
   +map de_dust2 +maxplayers 14
 ```
 
-Then open `http://127.0.0.1:27016` in your browser!
+Then open http://127.0.0.1:27016 in your browser!
 
 ## 🌍 Environment Variables
 
