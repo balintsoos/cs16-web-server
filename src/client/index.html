@@ -11,16 +11,57 @@
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
-    <div id="loading-overlay">
-      <img id="logo" alt="Logo" src="/apple-touch-icon.png" />
-      <div id="title">Counter-Strike 1.6</div>
-      <div id="progress-container">
-        <div id="progress-bar"></div>
+    <div
+      id="desktop"
+      class="flex-row align-center justify-center use-preferred-font"
+    >
+      <div class="window active">
+        <div class="title-bar">
+          <div class="title-bar-buttons">
+            <img
+              alt="Counter-Strike 1.6 icon"
+              src="/apple-touch-icon.png"
+              width="19"
+              height="19"
+            />
+          </div>
+          <div class="title-bar-text">Counter-Strike 1.6</div>
+          <div class="title-bar-buttons">
+            <button data-minimize=""></button>
+            <button data-maximize=""></button>
+            <button data-close=""></button>
+          </div>
+        </div>
+        <div class="window-body">
+          <img
+            class="banner-image margin-bottom"
+            alt="Counter-Strike 1.6 banner"
+            src="/cs16-banner.jpg"
+          />
+          <div class="flex-row padding-horizontal">
+            <progress
+              id="progress-bar"
+              class="grow"
+              value="0"
+              max="100"
+            ></progress>
+          </div>
+          <div id="loading-status" class="flex-row padding margin-bottom">
+            Loading...
+          </div>
+          <div
+            class="flex-row gap padding margin-vertical align-center flex-grow"
+          >
+            <label for="player-name-input">Your player name:</label>
+            <input id="player-name-input" class="grow" type="text" autofocus />
+          </div>
+          <hr />
+          <div class="flex-row gap padding margin-vertical justify-end">
+            <button id="play-button" disabled>Play</button>
+            <button>Quit</button>
+          </div>
+        </div>
       </div>
-      <div id="loading-status">Loading...</div>
-      <label for="player-name-input">Your player name</label>
-      <input id="player-name-input" type="text" autofocus />
-      <button id="play-button" disabled>Play</button>
     </div>
     <canvas id="canvas"></canvas>
     <script type="module" src="/src/main.ts"></script>

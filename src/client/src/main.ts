@@ -1,6 +1,6 @@
 import { createEngine } from './engine';
 import { getGameFiles } from './gamefiles';
-import { removeOverlay, updateProgress, updateStatus } from './overlay';
+import { removeDesktop, updateProgress, updateStatus } from './desktop';
 import { cachePlayerName, getPlayerName } from './player';
 import type { Xash3DWebRTC } from './webrtc';
 
@@ -39,7 +39,7 @@ async function initEngine(engine: Xash3DWebRTC): Promise<void> {
       engine.em.FS.writeFile(path, await file.async('uint8array'));
 
       filesLoaded += 1;
-      updateProgress(Math.floor((filesLoaded / totalFiles) * 100));
+      updateProgress(filesLoaded, totalFiles);
       updateStatus(`Loading game files... (${filesLoaded}/${totalFiles})`);
     })
   );
@@ -50,7 +50,7 @@ async function initEngine(engine: Xash3DWebRTC): Promise<void> {
 }
 
 function start(engine: Xash3DWebRTC): void {
-  removeOverlay();
+  removeDesktop();
   const playerName = getPlayerName();
   cachePlayerName(playerName);
 

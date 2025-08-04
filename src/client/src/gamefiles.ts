@@ -1,6 +1,6 @@
 import { loadAsync } from 'jszip';
 import { get, set } from 'idb-keyval';
-import { updateStatus } from './overlay';
+import { updateStatus } from './desktop';
 
 const FILE_KEY = 'gamefiles.zip';
 

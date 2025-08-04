@@ -1,80 +1,44 @@
+@import 'classic-stylesheets/layout.css';
+@import 'classic-stylesheets/themes/winxp/theme.css';
+
 body {
+  width: 100vw;
+  height: 100vh;
   background-color: black;
-  margin: 0;
-  font-family: Arial, sans-serif;
+}
+
+#desktop, canvas {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+#desktop {
+  background-image: url('/winxp-background.jpeg');
+  background-size: cover;
+  background-position: center;
+  font-family: var(--preferred-font);
+  z-index: 2;
 }
 
 canvas {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
   z-index: 1;
 }
 
-#loading-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  z-index: 2;
-  opacity: 1;
-  transition: opacity 0.5s ease-out;
+.window {
+  width: 400px;
 }
 
-#title {
-  font-size: 2.2rem;
-  font-weight: bold;
-  color: #ffcc00;
-  text-shadow: 2px 2px 8px #000;
-  margin-bottom: 25px;
+.title-bar-text {
+  padding-left: 0;
 }
 
-#progress-container {
-  width: 60%;
-  height: 25px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 5px;
-  overflow: hidden;
-  margin-bottom: 10px;
-}
-
-#progress-bar {
-  width: 0%;
-  height: 100%;
-  background: linear-gradient(90deg, #ffaa00, #ffcc00);
-  transition: width 0.2s ease;
+.banner-image {
+  width: 100%;
 }
 
 #loading-status {
-  font-size: 1rem;
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-label[for='player-name-input'] {
-  margin-bottom: 10px;
-}
-
-#player-name-input {
-  width: 200px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-#play-button {
-  padding: 10px 20px;
-  margin-bottom: 10px;
+  font-size: 12px;
 }
