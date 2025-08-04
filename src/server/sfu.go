@@ -453,24 +453,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 type Server struct {
 }
 
-var disabledXPoweredBy = false
-var xPoweredByValue = "yohimik"
-
-func init() {
-	disable, _ := os.LookupEnv("DISABLE_X_POWERED_BY")
-	if disable == "true" {
-		disabledXPoweredBy = true
-	}
-	xPoweredValue, has := os.LookupEnv("X_POWERED_BY_VALUE")
-	if has {
-		xPoweredByValue = xPoweredValue
-	}
-}
-
 func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if !disabledXPoweredBy {
-		w.Header().Set("X-Powered-By", xPoweredByValue)
-	}
 	switch r.URL.Path {
 	case "/websocket":
 		websocketHandler(w, r)

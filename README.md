@@ -57,12 +57,10 @@ Then open http://127.0.0.1:27016 in your browser!
 
 ## 🌍 Environment Variables
 
-| Variable               | Description                                            | Example             |
-| ---------------------- | ------------------------------------------------------ | ------------------- |
-| `IP`                   | Server IP address for WebRTC connection                | `123.45.67.89`      |
-| `PORT`                 | UDP port for CS server (must be open)                  | `27018`             |
-| `DISABLE_X_POWERED_BY` | Set to `true` to remove the `X-Powered-By` HTTP header | `true`              |
-| `X_POWERED_BY_VALUE`   | Custom value for `X-Powered-By` header if not disabled | `CS 1.6 Web Server` |
+| Variable | Description                             | Example        |
+| -------- | --------------------------------------- | -------------- |
+| `IP`     | Server IP address for WebRTC connection | `123.45.67.89` |
+| `PORT`   | UDP port for CS server (must be open)   | `27018`        |
 
 ## ⚙️ Customization
 
