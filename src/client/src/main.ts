@@ -25,12 +25,15 @@ async function initEngine(engine: Xash3DWebRTC): Promise<void> {
   const [gamefiles] = await Promise.all([getGameFiles(), engine.init()]);
 
   const fileEntries = Object.entries(gamefiles.files);
-  const totalFiles = fileEntries.length;
+  let totalFiles = fileEntries.length;
   let filesLoaded = 0;
 
   await Promise.all(
     fileEntries.map(async ([filename, file]) => {
-      if (file.dir) return;
+      if (file.dir) {
+        totalFiles -= 1;
+        return;
+      }
 
       const path = '/rodir/' + filename;
       const dir = path.split('/').slice(0, -1).join('/');
